@@ -1,15 +1,16 @@
-node {
-  stage('JIRA') {
-    withEnv(['JIRA_SITE=http://agiri.atlassian.net/']) {
-      def testIssue = [fields: [ project: [id: '10000'],
-                                 summary: 'New JIRA Created from Jenkins.',
-                                 description: 'New JIRA Created from Jenkins.',
-                                 issuetype: [id: '3']]]
-
-      response = jiraNewIssue issue: testIssue
-
-      echo response.successful.toString()
-      echo response.data.toString()
-    }
-  }
-}
+pipeline {
+     agent any
+     stages {
+         stage('Build') {
+             steps {
+                 echo 'Building...'
+             }
+             post {
+                 always {
+                     // previous to version 2.0.0 you must provide parameters to this command (see below)!
+                     jiraSendBuildInfo() 
+                 }
+             }
+         }
+     }
+ }
