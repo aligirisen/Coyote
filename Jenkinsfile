@@ -13,5 +13,15 @@ pipeline {
                  }
              }
          }
+         stage {
+            steps{
+                echo 'Deploying...'
+            }
+            post {
+                always{
+                    jiraSendDeploymentInfo environmentId: 'us-stg-1', environmentName: 'us-stg-1', environmentType: 'staging'
+                }
+            }
+         }
      }
  }
