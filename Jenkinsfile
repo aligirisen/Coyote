@@ -24,7 +24,7 @@ pipeline {
 
         stage('Artifact') {
           steps {
-            archiveArtifacts(onlyIfSuccessful: true, defaultExcludes: true, artifacts: 'src')
+            archiveArtifacts(onlyIfSuccessful: true, defaultExcludes: true, artifacts: 'src/')
           }
         }
 
