@@ -7,9 +7,20 @@ pipeline {
   }
   stages {
     stage('Build') {
-      steps {
-        sh 'cd src'
-        echo 'Cleaned and compiled'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'mvn clean'
+            echo 'Cleaned'
+          }
+        }
+
+        stage('Test-Maven') {
+          steps {
+            sh 'mvn -v'
+          }
+        }
+
       }
     }
 
