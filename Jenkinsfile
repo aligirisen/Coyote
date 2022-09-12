@@ -4,8 +4,6 @@ pipeline {
     stage('Build') {
       steps {
         sh 'cd src'
-        sh 'make clean'
-        sh 'make'
         echo 'Cleaned and compiled'
       }
     }
