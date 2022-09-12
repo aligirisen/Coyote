@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'jenkins-slave-maven'
+    }
+
+  }
   stages {
     stage('Build') {
       parallel {
